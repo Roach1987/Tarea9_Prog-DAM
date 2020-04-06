@@ -78,7 +78,6 @@ public class AltaCuentas extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         tFechaNacimiento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tFechaNacimiento.setText("  /  /    ");
         tFechaNacimiento.setToolTipText("dd/MM/aaaa Formato de fecha valido.");
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
@@ -116,6 +115,7 @@ public class AltaCuentas extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel10.setText("Comisión Fija por Descubierto:");
 
+        bGuardar.setBackground(new java.awt.Color(204, 204, 0));
         bGuardar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         bGuardar.setText("Guardar");
 

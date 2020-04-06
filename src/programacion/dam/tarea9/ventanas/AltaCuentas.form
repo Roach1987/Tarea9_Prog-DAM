@@ -258,7 +258,6 @@
               <Format format="##/##/####" subtype="-1" type="5"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="  /  /    "/>
             <Property name="toolTipText" type="java.lang.String" value="dd/MM/aaaa Formato de fecha valido."/>
           </Properties>
         </Component>
@@ -372,6 +371,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="bGuardar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="cc" red="cc" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial Black" size="14" style="0"/>
             </Property>
