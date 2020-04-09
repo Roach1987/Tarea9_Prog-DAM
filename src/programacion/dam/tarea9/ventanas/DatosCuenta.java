@@ -4,10 +4,10 @@ package programacion.dam.tarea9.ventanas;
  *
  * @author Roach
  */
-public class DatosCuenta extends javax.swing.JFrame {
+public class DatosCuenta extends javax.swing.JPanel {
 
     /**
-     * Creates new form DatosCuenta
+     * Creates new form DatosiCuentai
      */
     public DatosCuenta() {
         initComponents();
@@ -22,30 +22,32 @@ public class DatosCuenta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        tNombre = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        tApellidos = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        tFechaNacimiento = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        tCuentaCorriente = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        tTipoCuenta = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        tCuentaRemunerada = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        tInteresComision = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        tMaximoDescubierto = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        tInteresDescubiento = new javax.swing.JTextField();
-        jLabel14 = new javax.swing.JLabel();
-        tComisionDescubierto = new javax.swing.JTextField();
-        bListaEntidades = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        bListaEntidades = new javax.swing.JButton();
+        tComisionDescubierto = new javax.swing.JTextField();
+        tInteresDescubiento = new javax.swing.JTextField();
+        tMaximoDescubierto = new javax.swing.JTextField();
+        tInteresComision = new javax.swing.JTextField();
+        tCuentaRemunerada = new javax.swing.JTextField();
+        tTipoCuenta = new javax.swing.JTextField();
+        tCuentaCorriente = new javax.swing.JTextField();
+        tFechaNacimiento = new javax.swing.JTextField();
+        tApellidos = new javax.swing.JTextField();
+        tNombre = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Datos Cuenta");
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 11)); // NOI18N
         jLabel1.setText("Nombre:");
@@ -68,11 +70,11 @@ public class DatosCuenta extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         jLabel10.setText("Tipo Interes/ Comision mantenimiento:");
 
-        jLabel12.setFont(new java.awt.Font("Arial Black", 0, 11)); // NOI18N
-        jLabel12.setText("Tipo de Interes por Descubierto:");
-
         jLabel13.setFont(new java.awt.Font("Arial Black", 0, 11)); // NOI18N
         jLabel13.setText("Maximo Descubierto Permitido:");
+
+        jLabel12.setFont(new java.awt.Font("Arial Black", 0, 11)); // NOI18N
+        jLabel12.setText("Tipo de Interes por Descubierto:");
 
         jLabel14.setFont(new java.awt.Font("Arial Black", 0, 11)); // NOI18N
         jLabel14.setText("Comision Fija por Descubierto:");
@@ -86,12 +88,8 @@ public class DatosCuenta extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Datos Cuenta");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -181,21 +179,15 @@ public class DatosCuenta extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(tComisionDescubierto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(bListaEntidades)
                 .addGap(23, 23, 23))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Acción para recuperar el listado de entidades autorizadas para el cobro
-     * @param evt 
-     */
     private void bListaEntidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bListaEntidadesActionPerformed
         // Continuar codigo
-        
+
     }//GEN-LAST:event_bListaEntidadesActionPerformed
 
 

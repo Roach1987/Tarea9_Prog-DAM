@@ -1,16 +1,44 @@
 package programacion.dam.tarea9.ventanas;
 
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JList;
+import javax.swing.SwingUtilities;
+import programacion.dam.tarea9.beans.CuentaBancaria;
+import programacion.dam.tarea9.util.Util;
+
 /**
  *
  * @author Roach
  */
 public class Principal extends javax.swing.JFrame {
 
+    // Atributos
+    DatosCuenta ventanaDatosCuenta;
+    AltaCuentas ventanaAltaCuentas;
+    ListadoCuentas ventanaListadoCuentas;
+    Mix ventanaVarios;
+    
+//    JList<String> listaCombo;
+    DefaultComboBoxModel<String> modeloLista;
+    
     /**
      * Creates new form VentanaPrincipal
      */
     public Principal() {
+//        listaCombo = new JList<>();
+        modeloLista = new DefaultComboBoxModel<>();
+        
+        // Recargamos la lista de cuentas seleccionables
+        this.cargarListaCCC();
+        
         initComponents();
+        ventanaDatosCuenta = new DatosCuenta();
+        ventanaAltaCuentas = new AltaCuentas();
+        ventanaListadoCuentas = new ListadoCuentas();
+        ventanaVarios = new Mix();
+        
+
     }
 
     /**
@@ -60,8 +88,9 @@ public class Principal extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel2.setText("Cuenta");
 
-        cbListaCuentas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbListaCuentas.setSelectedIndex(-1);
+        cbListaCuentas.setModel(this.modeloLista
+        );
+        cbListaCuentas.setSelectedIndex(0);
         cbListaCuentas.setToolTipText("");
         cbListaCuentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +133,11 @@ public class Principal extends javax.swing.JFrame {
         bSalir.setBackground(new java.awt.Color(204, 204, 0));
         bSalir.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         bSalir.setText("Salir");
+        bSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSalirActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setToolTipText("Trabajar con Cuenta");
 
@@ -200,7 +234,12 @@ public class Principal extends javax.swing.JFrame {
      * @param evt 
      */
     private void bConsultarSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bConsultarSaldoActionPerformed
-        // Crear Codigo
+        // limpiamos el panel
+        jtAccionesPrincipales.removeAll();
+        
+        // Añadimos la ventana de consulatar saldo.
+        
+        
         
     }//GEN-LAST:event_bConsultarSaldoActionPerformed
 
@@ -209,6 +248,9 @@ public class Principal extends javax.swing.JFrame {
      * @param evt 
      */
     private void bCuentaNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCuentaNuevaActionPerformed
+        // limpiamos el panel
+        jtAccionesPrincipales.removeAll();
+        
         // Crear Codigo
         
     }//GEN-LAST:event_bCuentaNuevaActionPerformed
@@ -218,6 +260,9 @@ public class Principal extends javax.swing.JFrame {
      * @param evt 
      */
     private void bCuentasDisponiblesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCuentasDisponiblesActionPerformed
+        // limpiamos el panel
+        jtAccionesPrincipales.removeAll();
+
         // Crear Codigo
         
     }//GEN-LAST:event_bCuentasDisponiblesActionPerformed
@@ -227,6 +272,9 @@ public class Principal extends javax.swing.JFrame {
      * @param evt 
      */
     private void cbListaCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbListaCuentasActionPerformed
+        // limpiamos el panel
+        jtAccionesPrincipales.removeAll();
+
         // Crear Codigo
         
     }//GEN-LAST:event_cbListaCuentasActionPerformed
@@ -236,6 +284,9 @@ public class Principal extends javax.swing.JFrame {
      * @param evt 
      */
     private void bDatosCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDatosCuentaActionPerformed
+        // limpiamos el panel
+        jtAccionesPrincipales.removeAll();
+
         // Crear Codigo
         
     }//GEN-LAST:event_bDatosCuentaActionPerformed
@@ -245,8 +296,13 @@ public class Principal extends javax.swing.JFrame {
      * @param evt 
      */
     private void bIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bIngresarActionPerformed
-        // Crear Codigo
+        // limpiamos el panel
+        jtAccionesPrincipales.removeAll();
+
+        jtAccionesPrincipales.add(ventanaVarios.Mix(Util.OPERACION_INGRESAR, cbListaCuentas.getSelectedItem().toString()));
         
+        // Cambiamos el aspecto del panel auxiliar y pintamos la vista de Ingresar en cuenta.
+        SwingUtilities.updateComponentTreeUI(this);        
     }//GEN-LAST:event_bIngresarActionPerformed
 
     /**
@@ -254,10 +310,40 @@ public class Principal extends javax.swing.JFrame {
      * @param evt 
      */
     private void bRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRetirarActionPerformed
+        // limpiamos el panel
+        jtAccionesPrincipales.removeAll();
+
         // Crear Codigo
         
     }//GEN-LAST:event_bRetirarActionPerformed
 
+    /**
+     * Acción para salir de la aplicación.
+     * @param evt 
+     */
+    private void bSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_bSalirActionPerformed
+
+    // ***************************************************************************************************
+// ************************************ Utilidades de la Clase ***************************************
+// ***************************************************************************************************
+    
+    /**
+     * Método que carga los articulos que se encuentran en la lista temporal,
+     * y recoge los datos mas importantes para cargarlos en la tabla.
+     */
+    private void cargarListaCCC(){
+        // Liampiamos la lista al cargar nuevas cuentas bancarias, para evitar duplicidades.
+        modeloLista.removeAllElements();
+        
+        ArrayList<CuentaBancaria> listaCuentas = Util.listaCuentasBancarias;
+        
+        for(CuentaBancaria cuenta : listaCuentas){
+            // Añadimos a la tabla los datos de la cuenta actual.
+            modeloLista.addElement(cuenta.getCcc());
+        }
+    }
 // **************************************************************************************************************
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bConsultarSaldo;

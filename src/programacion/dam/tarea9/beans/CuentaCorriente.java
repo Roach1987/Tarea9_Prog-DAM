@@ -23,20 +23,19 @@ public abstract class CuentaCorriente extends CuentaBancaria{
     }
     
     // Getters y Setters
-
-    protected Hashtable<String,Double> getListaEntidadesAutorizadas() {
+    public Hashtable<String,Double> getListaEntidadesAutorizadas() {
         return listaEntidadesAutorizadas;
     }
 
-    protected void setListaEntidadesAutorizadas(Hashtable<String,Double> listaEntidadesAutorizadas) {
+    public void setListaEntidadesAutorizadas(Hashtable<String,Double> listaEntidadesAutorizadas) {
         this.listaEntidadesAutorizadas = listaEntidadesAutorizadas;
     }
 
-    protected boolean isTieneComisionMantenimiento() {
+    public boolean isTieneComisionMantenimiento() {
         return tieneComisionMantenimiento;
     }
 
-    protected void setTieneComisionMantenimiento(boolean tieneComisionMantenimiento) {
+    public void setTieneComisionMantenimiento(boolean tieneComisionMantenimiento) {
         this.tieneComisionMantenimiento = tieneComisionMantenimiento;
     }
 }

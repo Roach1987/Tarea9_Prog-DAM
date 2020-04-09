@@ -10,7 +10,7 @@ public class CuentaAhorro extends CuentaBancaria{
     protected Double tipoInteres;
     
     // Constructores
-    protected CuentaAhorro(Persona titular, Double saldo, String ccc, Double tipoInteres){
+    public CuentaAhorro(Persona titular, Double saldo, String ccc, Double tipoInteres){
         this.titular = titular;
         this.saldo = saldo;
         this.ccc = ccc;
@@ -19,11 +19,11 @@ public class CuentaAhorro extends CuentaBancaria{
     }
     
     // Getters y Setters
-    protected Double getTipoInteres() {
+    public Double getTipoInteres() {
         return tipoInteres;
     }
 
-    protected void setTipoInteres(Double tipoInteres) {
+    public void setTipoInteres(Double tipoInteres) {
         this.tipoInteres = tipoInteres;
     }
 }
