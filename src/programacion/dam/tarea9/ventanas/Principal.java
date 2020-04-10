@@ -237,8 +237,10 @@ public class Principal extends javax.swing.JFrame {
         // limpiamos el panel
         jtAccionesPrincipales.removeAll();
         
-        // Añadimos la ventana de consulatar saldo.
+        jtAccionesPrincipales.add(ventanaVarios.Mix(Util.OPERACION_SALDO, cbListaCuentas.getSelectedItem().toString()));
         
+        // Cambiamos el aspecto del panel auxiliar y pintamos la vista de Ingresar en cuenta.
+        SwingUtilities.updateComponentTreeUI(this); 
         
         
     }//GEN-LAST:event_bConsultarSaldoActionPerformed
@@ -313,8 +315,10 @@ public class Principal extends javax.swing.JFrame {
         // limpiamos el panel
         jtAccionesPrincipales.removeAll();
 
-        // Crear Codigo
+        jtAccionesPrincipales.add(ventanaVarios.Mix(Util.OPERACION_RETIRAR, cbListaCuentas.getSelectedItem().toString()));
         
+        // Cambiamos el aspecto del panel auxiliar y pintamos la vista de Ingresar en cuenta.
+        SwingUtilities.updateComponentTreeUI(this);  
     }//GEN-LAST:event_bRetirarActionPerformed
 
     /**

@@ -39,6 +39,8 @@ public class Mix extends javax.swing.JPanel {
         lVarios = new javax.swing.JLabel();
         tVarios = new javax.swing.JTextField();
         bVarios = new javax.swing.JButton();
+        lCCC = new javax.swing.JLabel();
+        lCuenta = new javax.swing.JLabel();
 
         lVarios.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         lVarios.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -54,6 +56,13 @@ public class Mix extends javax.swing.JPanel {
             }
         });
 
+        lCCC.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        lCCC.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        lCuenta.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        lCuenta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lCuenta.setText("Cuenta:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -64,23 +73,37 @@ public class Mix extends javax.swing.JPanel {
                         .addGap(136, 136, 136)
                         .addComponent(lVarios, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(tVarios, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(178, 178, 178)
-                        .addComponent(bVarios, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(143, Short.MAX_VALUE))
+                        .addComponent(bVarios, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tVarios, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lCCC, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(28, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(lCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(366, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(lVarios, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120)
+                .addGap(58, 58, 58)
+                .addComponent(lCCC, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
                 .addComponent(tVarios, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(bVarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(120, 120, 120)
+                    .addComponent(lCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(260, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -104,21 +127,27 @@ public class Mix extends javax.swing.JPanel {
         switch (distintivo) {
             case Util.OPERACION_INGRESAR:
                 tVarios.setText("");
+                tVarios.setEditable(true);
                 lVarios.setText(Util.OPERACION_INGRESAR);
                 bVarios.setText(Util.OPERACION_INGRESAR);
                 bVarios.setVisible(true);
+                lCCC.setText(ccc);
                 break;
             case Util.OPERACION_RETIRAR:
                 tVarios.setText("");
+                tVarios.setEditable(true);
                 lVarios.setText(Util.OPERACION_RETIRAR);
                 bVarios.setText(Util.OPERACION_RETIRAR);
                 bVarios.setVisible(true);
+                lCCC.setText(ccc);
                 break;
             default:
-                tVarios.setText(saldo);            
+                tVarios.setText(saldo);       
+                tVarios.setEditable(false);
                 lVarios.setText(Util.OPERACION_SALDO);
                 bVarios.setText(Util.OPERACION_SALDO);
                 bVarios.setVisible(false);
+                lCCC.setText(ccc);
                 break;
         }
         return this;
@@ -141,7 +170,8 @@ public class Mix extends javax.swing.JPanel {
                 if(null != cuenta){
                     Util.actualizarCuentaBancariaEnLista(cuenta, Util.OPERACION_INGRESAR, auxiliarSaldo);
                     Util.mostrarMensaje(this, "Se han añadido ".concat(auxiliarSaldo.toString())
-                            .concat("euros, el total de la cuenta es ").concat(cuenta.getSaldo().toString()),
+                            .concat(" Euros, el total de la cuenta es ").concat(cuenta.getSaldo().toString()
+                                    .concat(" Euros.")),
                         Util.SEVERIDAD_INFORMACION);
                     tVarios.setText("");
                 }else{
@@ -160,6 +190,10 @@ public class Mix extends javax.swing.JPanel {
                     if(cuenta.getSaldo() >= auxiliarSaldo){
                         // Actualizamos el saldo de la cuanta bancaria.
                         Util.actualizarCuentaBancariaEnLista(cuenta, Util.OPERACION_RETIRAR, auxiliarSaldo);
+                        Util.mostrarMensaje(this, "Se han retirado ".concat(auxiliarSaldo.toString())
+                            .concat(" Euros, el total de la cuenta es ").concat(cuenta.getSaldo().toString()
+                                    .concat(" Euros.")),
+                        Util.SEVERIDAD_INFORMACION);
                     }else{
                         Util.mostrarMensaje(this, "La cantidad a retirar es mayor a la cantidad disponible en cuenta.",
                             Util.SEVERIDAD_INFORMACION);
@@ -175,6 +209,8 @@ public class Mix extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bVarios;
+    private javax.swing.JLabel lCCC;
+    private javax.swing.JLabel lCuenta;
     private javax.swing.JLabel lVarios;
     private javax.swing.JTextField tVarios;
     // End of variables declaration//GEN-END:variables
