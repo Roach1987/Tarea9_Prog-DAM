@@ -2,7 +2,6 @@ package programacion.dam.tarea9.ventanas;
 
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JList;
 import javax.swing.SwingUtilities;
 import programacion.dam.tarea9.beans.CuentaBancaria;
 import programacion.dam.tarea9.util.Util;
@@ -24,9 +23,7 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form VentanaPrincipal
      */
     public Principal() {
-//        listaCombo = new JList<>();
         modeloLista = new DefaultComboBoxModel<>();
-        
         // Recargamos la lista de cuentas seleccionables
         this.cargarListaCCC();
         
@@ -198,7 +195,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jPanelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
                     .addComponent(jtAccionesPrincipales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -219,8 +216,9 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+// **************************************************************************************************************
 // ******************************************* Acciones Botones *************************************************
+// **************************************************************************************************************
     
     /**
      * Acción para consultar el saldo de una cuenta seleccionada.
@@ -229,13 +227,9 @@ public class Principal extends javax.swing.JFrame {
     private void bConsultarSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bConsultarSaldoActionPerformed
         // limpiamos el panel
         jtAccionesPrincipales.removeAll();
-        
-        jtAccionesPrincipales.add(ventanaVarios.Mix(Util.OPERACION_SALDO, cbListaCuentas.getSelectedItem().toString()));
-        
+        jtAccionesPrincipales.add(ventanaVarios.ventanaMix(Util.OPERACION_SALDO, cbListaCuentas.getSelectedItem().toString()));
         // Cambiamos el aspecto del panel auxiliar y pintamos la vista de Ingresar en cuenta.
         SwingUtilities.updateComponentTreeUI(this); 
-        
-        
     }//GEN-LAST:event_bConsultarSaldoActionPerformed
 
     /**
@@ -245,9 +239,9 @@ public class Principal extends javax.swing.JFrame {
     private void bCuentaNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCuentaNuevaActionPerformed
         // limpiamos el panel
         jtAccionesPrincipales.removeAll();
-        
-        // Crear Codigo
-        
+        jtAccionesPrincipales.add(ventanaAltaCuentas.ventanaAltaCuenta(this));
+        // Cambiamos el aspecto del panel auxiliar y pintamos la vista de Ingresar en cuenta.
+        SwingUtilities.updateComponentTreeUI(this);  
     }//GEN-LAST:event_bCuentaNuevaActionPerformed
 
     /**
@@ -257,9 +251,7 @@ public class Principal extends javax.swing.JFrame {
     private void bCuentasDisponiblesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCuentasDisponiblesActionPerformed
         // limpiamos el panel
         jtAccionesPrincipales.removeAll();
-        
-        jtAccionesPrincipales.add(ventanaListadoCuentas.VentanaCuenta());
-        
+        jtAccionesPrincipales.add(ventanaListadoCuentas.ventanaCuenta());
         // Cambiamos el aspecto del panel auxiliar y pintamos la vista de Ingresar en cuenta.
         SwingUtilities.updateComponentTreeUI(this);  
     }//GEN-LAST:event_bCuentasDisponiblesActionPerformed
@@ -271,9 +263,7 @@ public class Principal extends javax.swing.JFrame {
     private void bDatosCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDatosCuentaActionPerformed
         // limpiamos el panel
         jtAccionesPrincipales.removeAll();
-        
-        jtAccionesPrincipales.add(ventanaDatosCuenta.VentanaCuenta(cbListaCuentas.getSelectedItem().toString()));
-        
+        jtAccionesPrincipales.add(ventanaDatosCuenta.ventanaCuenta(cbListaCuentas.getSelectedItem().toString()));
         // Cambiamos el aspecto del panel auxiliar y pintamos la vista de Ingresar en cuenta.
         SwingUtilities.updateComponentTreeUI(this);        
     }//GEN-LAST:event_bDatosCuentaActionPerformed
@@ -285,9 +275,7 @@ public class Principal extends javax.swing.JFrame {
     private void bIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bIngresarActionPerformed
         // limpiamos el panel
         jtAccionesPrincipales.removeAll();
-
-        jtAccionesPrincipales.add(ventanaVarios.Mix(Util.OPERACION_INGRESAR, cbListaCuentas.getSelectedItem().toString()));
-        
+        jtAccionesPrincipales.add(ventanaVarios.ventanaMix(Util.OPERACION_INGRESAR, cbListaCuentas.getSelectedItem().toString()));     
         // Cambiamos el aspecto del panel auxiliar y pintamos la vista de Ingresar en cuenta.
         SwingUtilities.updateComponentTreeUI(this);        
     }//GEN-LAST:event_bIngresarActionPerformed
@@ -299,9 +287,7 @@ public class Principal extends javax.swing.JFrame {
     private void bRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bRetirarActionPerformed
         // limpiamos el panel
         jtAccionesPrincipales.removeAll();
-
-        jtAccionesPrincipales.add(ventanaVarios.Mix(Util.OPERACION_RETIRAR, cbListaCuentas.getSelectedItem().toString()));
-        
+        jtAccionesPrincipales.add(ventanaVarios.ventanaMix(Util.OPERACION_RETIRAR, cbListaCuentas.getSelectedItem().toString()));       
         // Cambiamos el aspecto del panel auxiliar y pintamos la vista de Ingresar en cuenta.
         SwingUtilities.updateComponentTreeUI(this);  
     }//GEN-LAST:event_bRetirarActionPerformed
@@ -314,7 +300,7 @@ public class Principal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_bSalirActionPerformed
 
-    // ***************************************************************************************************
+// ***************************************************************************************************
 // ************************************ Utilidades de la Clase ***************************************
 // ***************************************************************************************************
     
@@ -322,7 +308,7 @@ public class Principal extends javax.swing.JFrame {
      * Método que carga los articulos que se encuentran en la lista temporal,
      * y recoge los datos mas importantes para cargarlos en la tabla.
      */
-    private void cargarListaCCC(){
+    public void cargarListaCCC(){
         // Liampiamos la lista al cargar nuevas cuentas bancarias, para evitar duplicidades.
         modeloLista.removeAllElements();
         
@@ -334,6 +320,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 // **************************************************************************************************************
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bConsultarSaldo;
     private javax.swing.JButton bCuentaNueva;

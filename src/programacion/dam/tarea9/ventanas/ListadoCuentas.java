@@ -28,7 +28,7 @@ public class ListadoCuentas extends javax.swing.JPanel implements Serializable{
      * Método que pinta el panel en la ventana principal.
      * @return 
      */
-    public JPanel VentanaCuenta() {
+    public JPanel ventanaCuenta() {
         // Pintamos los atributos mas importantes de los articulos.
         String[] columnas = {"Código de Cuenta", "Titular", "Saldo Actual"};
         modelo = new DefaultTableModel(null, columnas);

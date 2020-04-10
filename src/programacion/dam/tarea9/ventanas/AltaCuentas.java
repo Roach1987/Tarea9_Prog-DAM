@@ -1,16 +1,34 @@
 package programacion.dam.tarea9.ventanas;
 
+import javax.swing.JPanel;
+import programacion.dam.tarea9.beans.Persona;
+import programacion.dam.tarea9.util.Util;
+import programacion.dam.tarea9.beans.*;
+
 /**
  *
  * @author Roach
  */
 public class AltaCuentas extends javax.swing.JPanel {
 
+    // Atributos
+    private Principal ventanaPrincipal;
     /**
      * Creates new form AltaCuentas
      */
     public AltaCuentas() {
         initComponents();
+        lVariable.setVisible(false);
+        lTipoInteresDescubierto.setVisible(false);
+        lComisionDescubierto.setVisible(false);
+        tVariable.setVisible(false);
+        tTipoInteresDescubierto.setVisible(false);
+        tComisionFijaDescubierto.setVisible(false);
+    }
+    
+    public JPanel ventanaAltaCuenta(Principal ventanaPrincipal) {
+        this.ventanaPrincipal = ventanaPrincipal;
+        return this;
     }
 
     /**
@@ -22,12 +40,14 @@ public class AltaCuentas extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Grupo1 = new javax.swing.ButtonGroup();
+        Grupo2 = new javax.swing.ButtonGroup();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lNombre = new javax.swing.JLabel();
         tNombre = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        lApellidos = new javax.swing.JLabel();
         tApellidos = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        lFechaNacimiento = new javax.swing.JLabel();
         tFechaNacimiento = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -38,28 +58,29 @@ public class AltaCuentas extends javax.swing.JPanel {
         rbCuentaCorrientePersonal = new javax.swing.JRadioButton();
         jSeparator3 = new javax.swing.JSeparator();
         tSaldoInicial = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        lSaldoInicial = new javax.swing.JLabel();
+        lCCC = new javax.swing.JLabel();
+        tCcc = new javax.swing.JFormattedTextField();
         tVariable = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        lVariable = new javax.swing.JLabel();
+        lComisionDescubierto = new javax.swing.JLabel();
         tComisionFijaDescubierto = new javax.swing.JTextField();
         tTipoInteresDescubierto = new javax.swing.JTextField();
         bGuardar = new javax.swing.JButton();
+        lTipoInteresDescubierto = new javax.swing.JLabel();
 
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Alta Cuentas");
 
-        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel1.setText("Nombre:");
+        lNombre.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        lNombre.setText("Nombre:");
 
-        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel3.setText("Apellidos:");
+        lApellidos.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        lApellidos.setText("Apellidos:");
 
-        jLabel4.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel4.setText("Fecha de Nacimiento:");
+        lFechaNacimiento.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        lFechaNacimiento.setText("Fecha de Nacimiento:");
 
         try {
             tFechaNacimiento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -69,195 +90,528 @@ public class AltaCuentas extends javax.swing.JPanel {
         tFechaNacimiento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tFechaNacimiento.setToolTipText("dd/MM/aaaa Formato de fecha valido.");
 
-        jLabel5.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel5.setText("Tipo de Cuenta:");
 
+        Grupo1.add(rbCuentaAhorro);
         rbCuentaAhorro.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         rbCuentaAhorro.setText("Cuenta Ahorro");
+        rbCuentaAhorro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbCuentaAhorroActionPerformed(evt);
+            }
+        });
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        Grupo1.add(rbCuentaCorriente);
         rbCuentaCorriente.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         rbCuentaCorriente.setText("Cuenta Corriente");
+        rbCuentaCorriente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbCuentaCorrienteActionPerformed(evt);
+            }
+        });
 
+        Grupo2.add(rbCuentaCorrienteEmpresa);
         rbCuentaCorrienteEmpresa.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         rbCuentaCorrienteEmpresa.setText("Empresa");
+        rbCuentaCorrienteEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbCuentaCorrienteEmpresaActionPerformed(evt);
+            }
+        });
 
+        Grupo2.add(rbCuentaCorrientePersonal);
         rbCuentaCorrientePersonal.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         rbCuentaCorrientePersonal.setText("Personal");
+        rbCuentaCorrientePersonal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbCuentaCorrientePersonalActionPerformed(evt);
+            }
+        });
 
-        jLabel6.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel6.setText("Saldo Inicial: ");
+        lSaldoInicial.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        lSaldoInicial.setText("Saldo Inicial: ");
 
-        jLabel7.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel7.setText("Cuenta Corriente (CCC):");
+        lCCC.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        lCCC.setText("Cuenta Corriente (CCC):");
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####-##-##########")));
+            tCcc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####-##-##########")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
-        jLabel9.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel9.setText("Tipo Interes por Descubierto:");
+        lVariable.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        lVariable.setText("Variable");
 
-        jLabel10.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jLabel10.setText("Comisión Fija por Descubierto:");
+        lComisionDescubierto.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        lComisionDescubierto.setText("Comisión Fija por Descubierto:");
 
         bGuardar.setBackground(new java.awt.Color(204, 204, 0));
         bGuardar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         bGuardar.setText("Guardar");
+        bGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bGuardarActionPerformed(evt);
+            }
+        });
+
+        lTipoInteresDescubierto.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        lTipoInteresDescubierto.setText("Tipo Interes por Descubierto:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 622, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jSeparator3)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lApellidos)
+                            .addComponent(lNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(rbCuentaAhorro)
+                                .addGap(82, 82, 82)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(47, 47, 47)
+                                .addComponent(rbCuentaCorriente))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(193, 193, 193)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rbCuentaCorrienteEmpresa)
+                            .addComponent(rbCuentaCorrientePersonal))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lComisionDescubierto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                                .addComponent(tComisionFijaDescubierto, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lTipoInteresDescubierto, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tTipoInteresDescubierto, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lVariable, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tVariable, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lCCC, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tCcc, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lSaldoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tSaldoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(37, 37, 37))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(255, 255, 255)
+                .addComponent(bGuardar)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(15, 15, 15)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(166, 166, 166)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(12, 12, 12)
-                                    .addComponent(rbCuentaAhorro)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(79, 79, 79)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(rbCuentaCorrienteEmpresa)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                            .addGap(49, 49, 49)
-                                                            .addComponent(rbCuentaCorriente))
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                            .addComponent(rbCuentaCorrientePersonal))))))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(41, 41, 41)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGap(0, 0, Short.MAX_VALUE))
-                        .addComponent(jSeparator1)
-                        .addComponent(jSeparator3)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(34, 34, 34)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(tTipoInteresDescubierto, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tVariable, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tSaldoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tComisionFijaDescubierto, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(0, 0, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGap(0, 0, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(tFechaNacimiento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(tApellidos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(tNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(22, 22, 22))
+                            .addGap(37, 37, 37))
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(254, 254, 254)
-                            .addComponent(bGuardar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(15, 15, 15)))
+                            .addGap(166, 166, 166)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jSeparator1)
+                            .addGap(15, 15, 15)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 576, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(lNombre)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lApellidos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lFechaNacimiento)
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel5)
+                        .addGap(6, 6, 6)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rbCuentaAhorro)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(rbCuentaCorriente)
+                                .addComponent(rbCuentaCorrientePersonal))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(rbCuentaCorrienteEmpresa)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lSaldoInicial)
+                    .addComponent(tSaldoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lCCC)
+                    .addComponent(tCcc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lVariable)
+                    .addComponent(tVariable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lTipoInteresDescubierto)
+                    .addComponent(tTipoInteresDescubierto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lComisionDescubierto)
+                    .addComponent(tComisionFijaDescubierto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(bGuardar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addComponent(jLabel2)
                     .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(tNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(tApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(tFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(22, 22, 22)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jLabel5)
-                    .addGap(21, 21, 21)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(rbCuentaAhorro)
-                                .addComponent(rbCuentaCorriente))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(rbCuentaCorrienteEmpresa)
-                            .addGap(3, 3, 3)
-                            .addComponent(rbCuentaCorrientePersonal))
-                        .addComponent(jSeparator2))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6)
-                        .addComponent(tSaldoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel7)
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
-                    .addComponent(tVariable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel9)
-                        .addComponent(tTipoInteresDescubierto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel10)
-                        .addComponent(tComisionFijaDescubierto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                    .addComponent(bGuardar)
-                    .addContainerGap()))
+                    .addContainerGap(320, Short.MAX_VALUE)))
         );
+
+        lVariable.getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Acción del radio button Cuenta de Ahorro
+     * @param evt 
+     */
+    private void rbCuentaAhorroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCuentaAhorroActionPerformed
+        rbCuentaCorrienteEmpresa.setEnabled(false);
+        rbCuentaCorrientePersonal.setEnabled(false);
+        lVariable.setText("Tipo de interes");
+        lVariable.setVisible(true);
+        tVariable.setVisible(true);
+        lTipoInteresDescubierto.setVisible(false);
+        lComisionDescubierto.setVisible(false);
+        tTipoInteresDescubierto.setVisible(false);
+        tComisionFijaDescubierto.setVisible(false);
+    }//GEN-LAST:event_rbCuentaAhorroActionPerformed
 
+    /**
+     * Acción del radio button Cuenta Corriente
+     * @param evt 
+     */
+    private void rbCuentaCorrienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCuentaCorrienteActionPerformed
+        rbCuentaCorrientePersonal.setEnabled(true);
+        rbCuentaCorrientePersonal.setSelected(true);
+        rbCuentaCorrienteEmpresa.setEnabled(true);
+        if (rbCuentaCorrientePersonal.isSelected()){
+            lVariable.setText("Comision de Mantenimiento");
+            lTipoInteresDescubierto.setVisible(false);
+            lComisionDescubierto.setVisible(false);
+            tTipoInteresDescubierto.setVisible(false);
+            tComisionFijaDescubierto.setVisible(false);
+        } else {
+            lVariable.setText("Maximo Descubierto");
+            lTipoInteresDescubierto.setVisible(true);
+            lComisionDescubierto.setVisible(true);
+            tTipoInteresDescubierto.setVisible(true);
+            tComisionFijaDescubierto.setVisible(true);
+        }
+        lVariable.setVisible(true);
+        tVariable.setVisible(true);
+    }//GEN-LAST:event_rbCuentaCorrienteActionPerformed
+
+    /**
+     * Acción del radio button Cuenta Corriente Empresa
+     * @param evt 
+     */
+    private void rbCuentaCorrienteEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCuentaCorrienteEmpresaActionPerformed
+        lVariable.setText("Maximo Descubierto");
+        lTipoInteresDescubierto.setVisible(true);
+        lComisionDescubierto.setVisible(true);
+        tTipoInteresDescubierto.setVisible(true);
+        tComisionFijaDescubierto.setVisible(true);
+    }//GEN-LAST:event_rbCuentaCorrienteEmpresaActionPerformed
+
+    /**
+     * Acción del radio button Cuenta Corriente Personal
+     * @param evt 
+     */
+    private void rbCuentaCorrientePersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCuentaCorrientePersonalActionPerformed
+        lVariable.setText("Comision de Mantenimiento");
+        lTipoInteresDescubierto.setVisible(false);
+        lComisionDescubierto.setVisible(false);
+        tTipoInteresDescubierto.setVisible(false);
+        tComisionFijaDescubierto.setVisible(false);
+    }//GEN-LAST:event_rbCuentaCorrientePersonalActionPerformed
+
+    /**
+     * Acción boton guardar nueva cuenta bancaria.
+     * @param evt 
+     */
+    private void bGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarActionPerformed
+        //si no esta seleccionada ninguna cuenta muestra mensaje de error
+        if (!rbCuentaAhorro.isSelected() && !rbCuentaCorriente.isSelected()){
+            Util.mostrarMensaje(this,"No hay ningun tipo de cuenta marcado", Util.SEVERIDAD_ADVERTENCIA);
+        } else {
+            // Cuenta de Ahorro
+            if (rbCuentaAhorro.isSelected()){
+                // Validamos que los campos sean correctos.
+                if (verificarFormulario()){
+                    //creamos un objeto persona
+                    Persona titular = new Persona(tNombre.getText().trim(),tApellidos.getText().trim()
+                            ,tFechaNacimiento.getText().trim());
+                    // Creamos la cuenta
+                    CuentaAhorro CuentaAhorro = new CuentaAhorro(titular,Double.valueOf(tSaldoInicial.getText().trim()),
+                                    tCcc.getText().trim(), Double.valueOf(tVariable.getText().trim()));
+                    
+                    //añadimos la cuenta al listado de cuentas
+                    Util.agregarCuentaBancariaEnLista(CuentaAhorro);
+                    
+                    Util.mostrarMensaje(this, "Cuenta de ahorro creada correctamente", Util.SEVERIDAD_INFORMACION);
+                }
+            // Cuenta Corriente
+            } else if (rbCuentaCorriente.isSelected()){
+                // *** Cuenta Corriente Personal
+                if (rbCuentaCorrientePersonal.isSelected()){
+                    // Validamos que los campos sean correctos.
+                    if (verificarFormulario()){
+                        //creamos el objeto persona
+                        Persona titular = new Persona(tNombre.getText().trim(), tApellidos.getText().trim(),
+                                tFechaNacimiento.getText().trim());
+                        //creamos la cuenta
+                        CuentaCorrientePersonal cuentaPersonal = new CuentaCorrientePersonal(titular, 
+                                Double.valueOf(tSaldoInicial.getText().trim()), tCcc.getText().trim(), 
+                                        Double.valueOf(tVariable.getText().trim()));
+                        
+                        //añadimos la cuenta al listado de cuentas
+                        Util.agregarCuentaBancariaEnLista(cuentaPersonal);
+                        Util.mostrarMensaje(this, "Cuenta corriente personal creada correctamente",
+                                Util.SEVERIDAD_INFORMACION);
+                    }
+                // *** Cuenta Corriente Empresa
+                } else if(rbCuentaCorrienteEmpresa.isSelected()){
+                    // Validamos que los campos sean correctos.
+                    if (verificarFormulario()){
+                        // Creamos el objeto persona
+                        Persona titular = new Persona(tNombre.getText().trim(),tApellidos.getText().trim(),
+                                tFechaNacimiento.getText().trim());
+                        // Creamos la cuenta
+                        CuentaCorrienteEmpresa cuentaEmpresa = new CuentaCorrienteEmpresa(titular, 
+                                Double.valueOf(tSaldoInicial.getText().trim()), tCcc.getText().trim(), 
+                                Double.valueOf(tVariable.getText().trim()), Double.valueOf(tTipoInteresDescubierto.getText().trim()), 
+                                Double.valueOf(tComisionFijaDescubierto.getText().trim()));
+                        
+                        //añadimos la cuenta al listado de cuentas
+                        Util.agregarCuentaBancariaEnLista(cuentaEmpresa);
+                        Util.mostrarMensaje(this, "Cuenta corriente de empresa creada correctamente",
+                                Util.SEVERIDAD_INFORMACION);
+                    }
+                }
+            }
+            // Limpiamos los campos y recargamos la lista de CCC de la ventana principal
+            limpiarCamposAlta();
+            ventanaPrincipal.cargarListaCCC();
+        }
+    }//GEN-LAST:event_bGuardarActionPerformed
+
+// ***************************************************************************************************
+// ************************************ Utilidades de la Clase ***************************************
+// ***************************************************************************************************
+    
+    /**
+     * Método que valida que todos los datos introducidos cumplan con los requisitos.
+     * @return boolean
+     */
+    public boolean verificarFormulario(){
+    // *********************** validamos la parte comun a todas las cuentas **************************
+        // Nombre
+        if(tNombre.getText().equals("")){
+            Util.mostrarMensaje(this, "El campo nombre no puede estar vacio", Util.SEVERIDAD_INFORMACION);
+            return false;
+        }else if(!Util.compruebaCadena(tNombre.getText().trim())) {
+            Util.mostrarMensaje(this, "El campo nombre no puede contener numeros,"
+                    + "ni ser compuesto por mas de dos nombres.", Util.SEVERIDAD_ADVERTENCIA);
+            return false;
+        }
+            
+        // Apellidos
+        if(tApellidos.getText().equals("")){
+            Util.mostrarMensaje(this, "El campo apellidos no puede estar vacio", Util.SEVERIDAD_INFORMACION);
+            return false;
+        }else if(!!Util.compruebaCadena(tApellidos.getText().trim())) {
+            Util.mostrarMensaje(this, "El campo apellidos no puede contener numeros,"
+                    + "ni ser compuesto por mas de dos apellidos.", Util.SEVERIDAD_ADVERTENCIA);
+            return false;
+        }
+        
+        // Fecha de Nacimiento
+        if(tFechaNacimiento.getText().equals("  /  /    ")){
+            Util.mostrarMensaje(this, "El campo de la fecha de nacimiento no puede estar vacio", Util.SEVERIDAD_INFORMACION);
+            return false;
+        }else if (!Util.validarFecha(tFechaNacimiento.getText())){
+            Util.mostrarMensaje(this, "La fecha enviada ".concat(tFechaNacimiento.getText())
+                    .concat(" no es valida, el formato valido es: dd/MM/yyyy"), Util.SEVERIDAD_ADVERTENCIA);
+            return false;
+        }
+        
+        // Saldo
+        if(tSaldoInicial.getText().equals("")){
+            Util.mostrarMensaje(this, "El campo del saldo no puede estar vacio", Util.SEVERIDAD_INFORMACION);
+            return false;
+        }else if(!Util.validarDouble(tSaldoInicial.getText().trim())){
+            Util.mostrarMensaje(this, "El saldo enviado ".concat(tSaldoInicial.getText())
+                    .concat(" no es valido, debe ser numerico"), Util.SEVERIDAD_ADVERTENCIA);
+            return false;
+        }
+        
+        // CCC
+        if(tCcc.getText().equals("    -    -  -          ")){
+            Util.mostrarMensaje(this, "El campo del CCC no puede estar vacio", Util.SEVERIDAD_INFORMACION);
+            return false;
+        }else{
+            String cuentaLimpia = Util.eliminarEspaciosGuiones(tCcc.getText().trim());
+            String mensajeCCC = Util.validarCuentaCorrienteCliente(cuentaLimpia);
+            if (!mensajeCCC.equals(Util.VALIDACION_OK)){
+                Util.mostrarMensaje(this, Util.validarCuentaCorrienteCliente(tCcc.getText().trim()), Util.SEVERIDAD_ADVERTENCIA);
+                return false;
+            } 
+        }
+    // *************************** Dependiendo del tipo de cuenta validamos el resto de campos
+        // Cuenta Ahorro
+        if(rbCuentaAhorro.isSelected()){
+            // Tipo de interes
+            if(tVariable.getText().equals("")){
+                Util.mostrarMensaje(this, "El campo del tipo de interes no puede estar vacio", Util.SEVERIDAD_INFORMACION);
+                return false;
+            }else if(!Util.validarPorcentaje(tVariable.getText().trim())){
+                Util.mostrarMensaje(this, "El tipo de interes debe estar entre 0% y 100%", Util.SEVERIDAD_ADVERTENCIA);
+                return false;
+            }
+        
+        // Cuenta Corriente    
+        }else if(rbCuentaCorriente.isSelected()){
+            
+            // *** Cuenta corriente personal
+            if (rbCuentaCorrientePersonal.isSelected()){
+                
+                // Comision de mantenimiento
+                if(tVariable.getText().equals("")){
+                    Util.mostrarMensaje(this, "El campo comision de mantenimiento no puede estar vacio", 
+                            Util.SEVERIDAD_INFORMACION);
+                    return false;
+                }else if(!Util.validarPorcentaje(tVariable.getText().trim())){
+                    Util.mostrarMensaje(this, "La comision debe estar entre 0% y 100%", Util.SEVERIDAD_ADVERTENCIA);
+                    return false;
+                }
+        
+            // *** Cuenta corriente de empresa
+            }else if(rbCuentaCorrienteEmpresa.isSelected()){
+                
+                // Maximo descubierto
+                if(tVariable.getText().equals("")){
+                    Util.mostrarMensaje(this, "El campo del maximo descubierto no puede estar vacio", Util.SEVERIDAD_INFORMACION);
+                    return false;
+                }else if(!Util.validarDouble(tVariable.getText().trim())){
+                    Util.mostrarMensaje(this, "El maximo descubierto debe ser numerico", Util.SEVERIDAD_ADVERTENCIA);
+                    return false;
+                }
+                
+                // Tipo interes por descubierto
+                if(tTipoInteresDescubierto.getText().equals("")){
+                    Util.mostrarMensaje(this, "El campo del tipo de interes por descubierto no puede estar vacio",
+                            Util.SEVERIDAD_INFORMACION);
+                    return false;
+                } else if(!Util.validarPorcentaje(tTipoInteresDescubierto.getText().trim())){
+                    Util.mostrarMensaje(this, "El tipo de interes por descubierto debe estar entre 0% y 100%",
+                            Util.SEVERIDAD_ADVERTENCIA);
+                    return false;
+                }
+                
+                // Comision por descubierto
+                if(tComisionFijaDescubierto.getText().equals("")){
+                    Util.mostrarMensaje(this, "El campo de la comision fija por descubierto no puede estar vacio",
+                            Util.SEVERIDAD_INFORMACION);
+                    return false;
+                }else if(!Util.validarDouble(tComisionFijaDescubierto.getText().trim())){
+                    Util.mostrarMensaje(this, "La comision fija por descubierto debe ser numerica",
+                            Util.SEVERIDAD_ADVERTENCIA);
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
+    /**
+     * Limpiar los campos
+     */
+    public void limpiarCamposAlta(){
+        rbCuentaAhorro.setSelected(false);
+        rbCuentaCorriente.setSelected(false);
+        rbCuentaCorrienteEmpresa.setSelected(false);
+        rbCuentaCorrientePersonal.setSelected(false);
+        tApellidos.setText("");
+        tComisionFijaDescubierto.setText("");
+        tFechaNacimiento.setText("  /  /    ");
+        tNombre.setText("");
+        tSaldoInicial.setText("");
+        tTipoInteresDescubierto.setText("");
+        tVariable.setText("");
+        tCcc.setText("    -    -  -          ");
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup Grupo1;
+    private javax.swing.ButtonGroup Grupo2;
     private javax.swing.JButton bGuardar;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JLabel lApellidos;
+    private javax.swing.JLabel lCCC;
+    private javax.swing.JLabel lComisionDescubierto;
+    private javax.swing.JLabel lFechaNacimiento;
+    private javax.swing.JLabel lNombre;
+    private javax.swing.JLabel lSaldoInicial;
+    private javax.swing.JLabel lTipoInteresDescubierto;
+    private javax.swing.JLabel lVariable;
     private javax.swing.JRadioButton rbCuentaAhorro;
     private javax.swing.JRadioButton rbCuentaCorriente;
     private javax.swing.JRadioButton rbCuentaCorrienteEmpresa;
     private javax.swing.JRadioButton rbCuentaCorrientePersonal;
     private javax.swing.JTextField tApellidos;
+    private javax.swing.JFormattedTextField tCcc;
     private javax.swing.JTextField tComisionFijaDescubierto;
     private javax.swing.JFormattedTextField tFechaNacimiento;
     private javax.swing.JTextField tNombre;

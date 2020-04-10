@@ -318,6 +318,26 @@ public class Util {
     }
     
     /**
+     * validamos que el dato sea double y este entre 0 y 100
+     * @param panel
+     * @param dato
+     * @return 
+     */
+    public static boolean validarPorcentaje(String dato){
+        try{
+            double porcentajeValidar = Double.parseDouble(dato); 
+            if (!(porcentajeValidar >= 0 && porcentajeValidar <= 100)){
+                mostrarMensaje(null, "El campo tiene que estar entre 0 y 100%", SEVERIDAD_ADVERTENCIA);
+                return false;
+            }
+        } catch (NumberFormatException ex){
+            mostrarMensaje(null, "El campo no tiene un formato numerico valido", SEVERIDAD_ERROR);
+            return false;
+        }
+        return true;
+    }
+    
+    /**
      * Método que comprueba el formato de una fecha, el formato debe de ser dd/MM/yyyy.
      * @param fecha
      * @return boolean si la fecha es valida.

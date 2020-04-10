@@ -114,7 +114,7 @@ public class Mix extends javax.swing.JPanel {
      * @param ccc
      * @return Jpanel
      */
-    public JPanel Mix(String distintivo, String ccc) {        
+    public JPanel ventanaMix(String distintivo, String ccc) {        
      
         // Guardamos en el objeto los atributos llegados por parametro
         this.distintivo = distintivo;
