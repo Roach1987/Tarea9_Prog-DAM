@@ -18,6 +18,9 @@ public class CuentaAhorro extends CuentaBancaria{
         this.tipoInteres = tipoInteres;
     }
     
+    public CuentaAhorro(){
+    }
+    
     // Getters y Setters
     public Double getTipoInteres() {
         return tipoInteres;

@@ -288,9 +288,11 @@ public class Principal extends javax.swing.JFrame {
     private void bDatosCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDatosCuentaActionPerformed
         // limpiamos el panel
         jtAccionesPrincipales.removeAll();
-
-        // Crear Codigo
         
+        jtAccionesPrincipales.add(ventanaDatosCuenta.VentanaCuenta(cbListaCuentas.getSelectedItem().toString()));
+        
+        // Cambiamos el aspecto del panel auxiliar y pintamos la vista de Ingresar en cuenta.
+        SwingUtilities.updateComponentTreeUI(this);        
     }//GEN-LAST:event_bDatosCuentaActionPerformed
 
     /**

@@ -15,11 +15,11 @@ public abstract class CuentaCorriente extends CuentaBancaria{
     // Constructores
     protected CuentaCorriente(){
         listaEntidadesAutorizadas= new Hashtable();
-        listaEntidadesAutorizadas.put("EntidadAutorizada1",500d);
-        listaEntidadesAutorizadas.put("EntidadAutorizada2",1000d);
-        listaEntidadesAutorizadas.put("EntidadAutorizada3",400d);
-        listaEntidadesAutorizadas.put("EntidadAutorizada4",100d);
-        listaEntidadesAutorizadas.put("EntidadAutorizada5",200d);
+        listaEntidadesAutorizadas.put("Banco Mediolanum",500.0);
+        listaEntidadesAutorizadas.put("Caja Extremadura",1000.0);
+        listaEntidadesAutorizadas.put("Caixa la Avenue",400.0);
+        listaEntidadesAutorizadas.put("Caja Mar",100.0);
+        listaEntidadesAutorizadas.put("Banco Palomo",200.);
     }
     
     // Getters y Setters
