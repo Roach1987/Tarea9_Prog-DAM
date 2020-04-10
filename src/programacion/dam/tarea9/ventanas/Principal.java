@@ -18,8 +18,6 @@ public class Principal extends javax.swing.JFrame {
     AltaCuentas ventanaAltaCuentas;
     ListadoCuentas ventanaListadoCuentas;
     Mix ventanaVarios;
-    
-//    JList<String> listaCombo;
     DefaultComboBoxModel<String> modeloLista;
     
     /**
@@ -92,11 +90,6 @@ public class Principal extends javax.swing.JFrame {
         );
         cbListaCuentas.setSelectedIndex(0);
         cbListaCuentas.setToolTipText("");
-        cbListaCuentas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbListaCuentasActionPerformed(evt);
-            }
-        });
 
         bDatosCuenta.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         bDatosCuenta.setText("Datos de la Cuenta");
@@ -264,22 +257,12 @@ public class Principal extends javax.swing.JFrame {
     private void bCuentasDisponiblesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCuentasDisponiblesActionPerformed
         // limpiamos el panel
         jtAccionesPrincipales.removeAll();
-
-        // Crear Codigo
         
+        jtAccionesPrincipales.add(ventanaListadoCuentas.VentanaCuenta());
+        
+        // Cambiamos el aspecto del panel auxiliar y pintamos la vista de Ingresar en cuenta.
+        SwingUtilities.updateComponentTreeUI(this);  
     }//GEN-LAST:event_bCuentasDisponiblesActionPerformed
-
-    /**
-     * Lista de cuentas (desplegable)
-     * @param evt 
-     */
-    private void cbListaCuentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbListaCuentasActionPerformed
-        // limpiamos el panel
-        jtAccionesPrincipales.removeAll();
-
-        // Crear Codigo
-        
-    }//GEN-LAST:event_cbListaCuentasActionPerformed
 
     /**
      * Acción para ver los datos de una cuenta seleccionada.
@@ -343,7 +326,7 @@ public class Principal extends javax.swing.JFrame {
         // Liampiamos la lista al cargar nuevas cuentas bancarias, para evitar duplicidades.
         modeloLista.removeAllElements();
         
-        ArrayList<CuentaBancaria> listaCuentas = Util.listaCuentasBancarias;
+        ArrayList<CuentaBancaria> listaCuentas = Util.listarCuentasBancarias();
         
         for(CuentaBancaria cuenta : listaCuentas){
             // Añadimos a la tabla los datos de la cuenta actual.
