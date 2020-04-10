@@ -306,9 +306,9 @@ public class DatosCuenta extends javax.swing.JPanel {
                         tInteresDescubiento.setVisible(true);
                         tComisionDescubierto.setVisible(true);
                         
-                        tMaximoDescubierto.setText(cuentaEmpresa.getMaximoDescubierto().toString());
-                        tInteresDescubiento.setText(cuentaEmpresa.getTipoInteresDescubierto().toString());
-                        tComisionDescubierto.setText(cuentaEmpresa.getComisionDescubierto().toString());
+                        tMaximoDescubierto.setText(cuentaEmpresa.getMaximoDescubierto().toString().concat(" Euros"));
+                        tInteresDescubiento.setText(cuentaEmpresa.getTipoInteresDescubierto().toString().concat("%"));
+                        tComisionDescubierto.setText(cuentaEmpresa.getComisionDescubierto().toString().concat(" Euros"));
                         
                         //recuperamos el listado de entidades autorizadas a cobrar
                         tablaEntidades = cuentaEmpresa.getListaEntidadesAutorizadas();

@@ -383,11 +383,10 @@ public class Util {
      */
     public static boolean compruebaCadena(String cadena){        
         int longitud = cadena.length();
+        int contadorEspacios = 0;
         for(int i = 0; i < longitud; i++){
             char caracter = cadena.charAt(i);
-            int contadorEspacios = 0;
-            
-            if(contadorEspacios > 2 || caracter != ' ' || !Character.isLetter(caracter)){
+            if(contadorEspacios > 2 || (!Character.isSpaceChar(caracter) && !Character.isLetter(caracter))){
                 return false;
             }            
             if(Character.isSpaceChar(caracter)){

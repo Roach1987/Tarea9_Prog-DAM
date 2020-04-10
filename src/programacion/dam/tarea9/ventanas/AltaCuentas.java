@@ -395,8 +395,11 @@ public class AltaCuentas extends javax.swing.JPanel {
                     
                     //añadimos la cuenta al listado de cuentas
                     Util.agregarCuentaBancariaEnLista(CuentaAhorro);
-                    
                     Util.mostrarMensaje(this, "Cuenta de ahorro creada correctamente", Util.SEVERIDAD_INFORMACION);
+                    
+                    // Limpiamos los campos y recargamos la lista de CCC de la ventana principal
+                    limpiarCamposAlta();
+                    ventanaPrincipal.cargarListaCCC();
                 }
             // Cuenta Corriente
             } else if (rbCuentaCorriente.isSelected()){
@@ -416,6 +419,10 @@ public class AltaCuentas extends javax.swing.JPanel {
                         Util.agregarCuentaBancariaEnLista(cuentaPersonal);
                         Util.mostrarMensaje(this, "Cuenta corriente personal creada correctamente",
                                 Util.SEVERIDAD_INFORMACION);
+                        
+                        // Limpiamos los campos y recargamos la lista de CCC de la ventana principal
+                        limpiarCamposAlta();
+                        ventanaPrincipal.cargarListaCCC();
                     }
                 // *** Cuenta Corriente Empresa
                 } else if(rbCuentaCorrienteEmpresa.isSelected()){
@@ -434,12 +441,13 @@ public class AltaCuentas extends javax.swing.JPanel {
                         Util.agregarCuentaBancariaEnLista(cuentaEmpresa);
                         Util.mostrarMensaje(this, "Cuenta corriente de empresa creada correctamente",
                                 Util.SEVERIDAD_INFORMACION);
+                        
+                        // Limpiamos los campos y recargamos la lista de CCC de la ventana principal
+                        limpiarCamposAlta();
+                        ventanaPrincipal.cargarListaCCC();
                     }
                 }
             }
-            // Limpiamos los campos y recargamos la lista de CCC de la ventana principal
-            limpiarCamposAlta();
-            ventanaPrincipal.cargarListaCCC();
         }
     }//GEN-LAST:event_bGuardarActionPerformed
 
@@ -462,17 +470,15 @@ public class AltaCuentas extends javax.swing.JPanel {
                     + "ni ser compuesto por mas de dos nombres.", Util.SEVERIDAD_ADVERTENCIA);
             return false;
         }
-            
         // Apellidos
         if(tApellidos.getText().equals("")){
             Util.mostrarMensaje(this, "El campo apellidos no puede estar vacio", Util.SEVERIDAD_INFORMACION);
             return false;
-        }else if(!!Util.compruebaCadena(tApellidos.getText().trim())) {
+        }else if(!Util.compruebaCadena(tApellidos.getText().trim())) {
             Util.mostrarMensaje(this, "El campo apellidos no puede contener numeros,"
                     + "ni ser compuesto por mas de dos apellidos.", Util.SEVERIDAD_ADVERTENCIA);
             return false;
         }
-        
         // Fecha de Nacimiento
         if(tFechaNacimiento.getText().equals("  /  /    ")){
             Util.mostrarMensaje(this, "El campo de la fecha de nacimiento no puede estar vacio", Util.SEVERIDAD_INFORMACION);
@@ -482,7 +488,6 @@ public class AltaCuentas extends javax.swing.JPanel {
                     .concat(" no es valida, el formato valido es: dd/MM/yyyy"), Util.SEVERIDAD_ADVERTENCIA);
             return false;
         }
-        
         // Saldo
         if(tSaldoInicial.getText().equals("")){
             Util.mostrarMensaje(this, "El campo del saldo no puede estar vacio", Util.SEVERIDAD_INFORMACION);
@@ -492,12 +497,12 @@ public class AltaCuentas extends javax.swing.JPanel {
                     .concat(" no es valido, debe ser numerico"), Util.SEVERIDAD_ADVERTENCIA);
             return false;
         }
-        
         // CCC
         if(tCcc.getText().equals("    -    -  -          ")){
             Util.mostrarMensaje(this, "El campo del CCC no puede estar vacio", Util.SEVERIDAD_INFORMACION);
             return false;
         }else{
+            // Limpiamos la ccc de guiones.
             String cuentaLimpia = Util.eliminarEspaciosGuiones(tCcc.getText().trim());
             String mensajeCCC = Util.validarCuentaCorrienteCliente(cuentaLimpia);
             if (!mensajeCCC.equals(Util.VALIDACION_OK)){
@@ -516,13 +521,10 @@ public class AltaCuentas extends javax.swing.JPanel {
                 Util.mostrarMensaje(this, "El tipo de interes debe estar entre 0% y 100%", Util.SEVERIDAD_ADVERTENCIA);
                 return false;
             }
-        
         // Cuenta Corriente    
         }else if(rbCuentaCorriente.isSelected()){
-            
             // *** Cuenta corriente personal
             if (rbCuentaCorrientePersonal.isSelected()){
-                
                 // Comision de mantenimiento
                 if(tVariable.getText().equals("")){
                     Util.mostrarMensaje(this, "El campo comision de mantenimiento no puede estar vacio", 
@@ -575,18 +577,20 @@ public class AltaCuentas extends javax.swing.JPanel {
      * Limpiar los campos
      */
     public void limpiarCamposAlta(){
-        rbCuentaAhorro.setSelected(false);
-        rbCuentaCorriente.setSelected(false);
-        rbCuentaCorrienteEmpresa.setSelected(false);
-        rbCuentaCorrientePersonal.setSelected(false);
+        Grupo1.clearSelection();
+        Grupo2.clearSelection();
+//        rbCuentaAhorro.setSelected(false);
+//        rbCuentaCorriente.setSelected(false);
+//        rbCuentaCorrienteEmpresa.setSelected(false);
+//        rbCuentaCorrientePersonal.setSelected(false);
         tApellidos.setText("");
         tComisionFijaDescubierto.setText("");
-        tFechaNacimiento.setText("  /  /    ");
+        tFechaNacimiento.setText("");
         tNombre.setText("");
         tSaldoInicial.setText("");
         tTipoInteresDescubierto.setText("");
         tVariable.setText("");
-        tCcc.setText("    -    -  -          ");
+        tCcc.setText("");
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
