@@ -96,14 +96,14 @@ public class Mix extends javax.swing.JPanel {
                 .addComponent(lCCC, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61)
                 .addComponent(tVarios, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addComponent(bVarios, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(120, 120, 120)
                     .addComponent(lCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(260, Short.MAX_VALUE)))
+                    .addContainerGap(272, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -162,7 +162,7 @@ public class Mix extends javax.swing.JPanel {
 
         if (distintivo.equals(Util.OPERACION_INGRESAR)){
             //validamos si es un dato correcto
-            if (Util.validarDouble(tVarios.getText())){
+            if (Util.validarDouble(tVarios.getText().trim(), Util.OPERACION_INGRESAR)){
                 auxiliarSaldo = Double.parseDouble(tVarios.getText());
                 //buscamos la cuenta que corresponde al ccc.
                 CuentaBancaria cuenta = Util.buscarCuentaBancariaPorCCC(ccc);
@@ -181,7 +181,7 @@ public class Mix extends javax.swing.JPanel {
             }
         }else{
             //validamos si es un dato correcto
-            if (Util.validarDouble(tVarios.getText())){
+            if (Util.validarDouble(tVarios.getText().trim(), Util.OPERACION_RETIRAR)){
                 auxiliarSaldo = Double.parseDouble(tVarios.getText());
                 //buscamos la cuenta que corresponde al ccc.
                 CuentaBancaria cuenta = Util.buscarCuentaBancariaPorCCC(ccc);
@@ -194,6 +194,7 @@ public class Mix extends javax.swing.JPanel {
                             .concat(" Euros, el total de la cuenta es ").concat(cuenta.getSaldo().toString()
                                     .concat(" Euros.")),
                         Util.SEVERIDAD_INFORMACION);
+                        tVarios.setText("");
                     }else{
                         Util.mostrarMensaje(this, "La cantidad a retirar es mayor a la cantidad disponible en cuenta.",
                             Util.SEVERIDAD_INFORMACION);

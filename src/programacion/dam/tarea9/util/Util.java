@@ -34,9 +34,11 @@ public class Util {
     /**
      * Método que crea una cuenta bancaria en la lista, si esta no existe previamente.
      * @param cuenta 
+     * @return boolean
      */
-    public static void agregarCuentaBancariaEnLista(CuentaBancaria cuenta){
+    public static boolean agregarCuentaBancariaEnLista(CuentaBancaria cuenta){
         // CREATE
+        boolean respuesta = false;
         if(null != cuenta){
             if(null != cuenta.getCcc()){
                 String cuentaBuscar = cuenta.getCcc(); 
@@ -44,11 +46,13 @@ public class Util {
                 
                 if(null == cuentaEncontrada){
                     listaCuentasBancarias.add(cuenta);
+                    respuesta = true;
                 }else{
                     mostrarMensaje(null, "Ya existe una cuenta con el ccc ".concat(cuentaBuscar), SEVERIDAD_INFORMACION);
                 }
             }
         }
+        return respuesta;
     }
     
     /**
@@ -296,20 +300,29 @@ public class Util {
     }
     
     /**
-     * valida que sea un double y que no sea negativo
-     * @param dato: el saldo que hay que retirar/ingresar 
+     * valida que sea un double y que no sea negativo, y si es un retiro o ingreso
+     * no sea 0
+     * @param dato
+     * @param operacion 
      * @return true si es un double positivo.
      */
-    public static boolean validarDouble(String dato){
+    public static boolean validarDouble(String dato, String operacion){
         try{
+            if(dato.isEmpty()){
+                mostrarMensaje(null, "El campo no puede estar vacio.", SEVERIDAD_INFORMACION);
+                return false;
+            }
             double numeroValidar = Double.parseDouble(dato); 
             if (numeroValidar < 0){
                 mostrarMensaje(null, "El campo no puede ser negativo", SEVERIDAD_INFORMACION);
                 return false;
-            } else if (numeroValidar == 0){
-                mostrarMensaje(null, "No se puede ingresar o retirar 0?", SEVERIDAD_INFORMACION);
-                return false;
-            } 
+            }  
+            if(null != operacion){
+                if (numeroValidar == 0){
+                    mostrarMensaje(null, "No se puede ingresar o retirar 0 Euros", SEVERIDAD_INFORMACION);
+                    return false;
+                } 
+            }
         } catch (NumberFormatException ex){
             mostrarMensaje(null, "El campo no tiene un formato valido", SEVERIDAD_ERROR);
             return false;
@@ -319,7 +332,6 @@ public class Util {
     
     /**
      * validamos que el dato sea double y este entre 0 y 100
-     * @param panel
      * @param dato
      * @return 
      */

@@ -382,6 +382,7 @@ public class AltaCuentas extends javax.swing.JPanel {
         if (!rbCuentaAhorro.isSelected() && !rbCuentaCorriente.isSelected()){
             Util.mostrarMensaje(this,"No hay ningun tipo de cuenta marcado", Util.SEVERIDAD_ADVERTENCIA);
         } else {
+            boolean agregarCuenta;
             // Cuenta de Ahorro
             if (rbCuentaAhorro.isSelected()){
                 // Validamos que los campos sean correctos.
@@ -394,12 +395,15 @@ public class AltaCuentas extends javax.swing.JPanel {
                                     tCcc.getText().trim(), Double.valueOf(tVariable.getText().trim()));
                     
                     //añadimos la cuenta al listado de cuentas
-                    Util.agregarCuentaBancariaEnLista(CuentaAhorro);
-                    Util.mostrarMensaje(this, "Cuenta de ahorro creada correctamente", Util.SEVERIDAD_INFORMACION);
+                    agregarCuenta = Util.agregarCuentaBancariaEnLista(CuentaAhorro);
                     
-                    // Limpiamos los campos y recargamos la lista de CCC de la ventana principal
-                    limpiarCamposAlta();
-                    ventanaPrincipal.cargarListaCCC();
+                    if(agregarCuenta){
+                        Util.mostrarMensaje(this, "Cuenta de ahorro creada correctamente", Util.SEVERIDAD_INFORMACION);
+
+                        // Limpiamos los campos y recargamos la lista de CCC de la ventana principal
+                        limpiarCamposAlta();
+                        ventanaPrincipal.cargarListaCCC();
+                    }
                 }
             // Cuenta Corriente
             } else if (rbCuentaCorriente.isSelected()){
@@ -416,13 +420,16 @@ public class AltaCuentas extends javax.swing.JPanel {
                                         Double.valueOf(tVariable.getText().trim()));
                         
                         //añadimos la cuenta al listado de cuentas
-                        Util.agregarCuentaBancariaEnLista(cuentaPersonal);
-                        Util.mostrarMensaje(this, "Cuenta corriente personal creada correctamente",
-                                Util.SEVERIDAD_INFORMACION);
+                        agregarCuenta = Util.agregarCuentaBancariaEnLista(cuentaPersonal);
                         
-                        // Limpiamos los campos y recargamos la lista de CCC de la ventana principal
-                        limpiarCamposAlta();
-                        ventanaPrincipal.cargarListaCCC();
+                        if(agregarCuenta){
+                            Util.mostrarMensaje(this, "Cuenta corriente personal creada correctamente",
+                                    Util.SEVERIDAD_INFORMACION);
+
+                            // Limpiamos los campos y recargamos la lista de CCC de la ventana principal
+                            limpiarCamposAlta();
+                            ventanaPrincipal.cargarListaCCC();
+                        }
                     }
                 // *** Cuenta Corriente Empresa
                 } else if(rbCuentaCorrienteEmpresa.isSelected()){
@@ -438,13 +445,16 @@ public class AltaCuentas extends javax.swing.JPanel {
                                 Double.valueOf(tComisionFijaDescubierto.getText().trim()));
                         
                         //añadimos la cuenta al listado de cuentas
-                        Util.agregarCuentaBancariaEnLista(cuentaEmpresa);
-                        Util.mostrarMensaje(this, "Cuenta corriente de empresa creada correctamente",
-                                Util.SEVERIDAD_INFORMACION);
+                        agregarCuenta = Util.agregarCuentaBancariaEnLista(cuentaEmpresa);
                         
-                        // Limpiamos los campos y recargamos la lista de CCC de la ventana principal
-                        limpiarCamposAlta();
-                        ventanaPrincipal.cargarListaCCC();
+                        if(agregarCuenta){
+                            Util.mostrarMensaje(this, "Cuenta corriente de empresa creada correctamente",
+                                    Util.SEVERIDAD_INFORMACION);
+
+                            // Limpiamos los campos y recargamos la lista de CCC de la ventana principal
+                            limpiarCamposAlta();
+                            ventanaPrincipal.cargarListaCCC();
+                        }
                     }
                 }
             }
@@ -467,7 +477,7 @@ public class AltaCuentas extends javax.swing.JPanel {
             return false;
         }else if(!Util.compruebaCadena(tNombre.getText().trim())) {
             Util.mostrarMensaje(this, "El campo nombre no puede contener numeros,"
-                    + "ni ser compuesto por mas de dos nombres.", Util.SEVERIDAD_ADVERTENCIA);
+                    + " ni ser compuesto por mas de tres nombres.", Util.SEVERIDAD_ADVERTENCIA);
             return false;
         }
         // Apellidos
@@ -476,7 +486,7 @@ public class AltaCuentas extends javax.swing.JPanel {
             return false;
         }else if(!Util.compruebaCadena(tApellidos.getText().trim())) {
             Util.mostrarMensaje(this, "El campo apellidos no puede contener numeros,"
-                    + "ni ser compuesto por mas de dos apellidos.", Util.SEVERIDAD_ADVERTENCIA);
+                    + " ni ser compuesto por mas de tres apellidos.", Util.SEVERIDAD_ADVERTENCIA);
             return false;
         }
         // Fecha de Nacimiento
@@ -492,9 +502,7 @@ public class AltaCuentas extends javax.swing.JPanel {
         if(tSaldoInicial.getText().equals("")){
             Util.mostrarMensaje(this, "El campo del saldo no puede estar vacio", Util.SEVERIDAD_INFORMACION);
             return false;
-        }else if(!Util.validarDouble(tSaldoInicial.getText().trim())){
-            Util.mostrarMensaje(this, "El saldo enviado ".concat(tSaldoInicial.getText())
-                    .concat(" no es valido, debe ser numerico"), Util.SEVERIDAD_ADVERTENCIA);
+        }else if(!Util.validarDouble(tSaldoInicial.getText().trim(), null)){
             return false;
         }
         // CCC
@@ -506,7 +514,7 @@ public class AltaCuentas extends javax.swing.JPanel {
             String cuentaLimpia = Util.eliminarEspaciosGuiones(tCcc.getText().trim());
             String mensajeCCC = Util.validarCuentaCorrienteCliente(cuentaLimpia);
             if (!mensajeCCC.equals(Util.VALIDACION_OK)){
-                Util.mostrarMensaje(this, Util.validarCuentaCorrienteCliente(tCcc.getText().trim()), Util.SEVERIDAD_ADVERTENCIA);
+                Util.mostrarMensaje(this, mensajeCCC, Util.SEVERIDAD_ADVERTENCIA);
                 return false;
             } 
         }
@@ -518,7 +526,6 @@ public class AltaCuentas extends javax.swing.JPanel {
                 Util.mostrarMensaje(this, "El campo del tipo de interes no puede estar vacio", Util.SEVERIDAD_INFORMACION);
                 return false;
             }else if(!Util.validarPorcentaje(tVariable.getText().trim())){
-                Util.mostrarMensaje(this, "El tipo de interes debe estar entre 0% y 100%", Util.SEVERIDAD_ADVERTENCIA);
                 return false;
             }
         // Cuenta Corriente    
@@ -531,7 +538,6 @@ public class AltaCuentas extends javax.swing.JPanel {
                             Util.SEVERIDAD_INFORMACION);
                     return false;
                 }else if(!Util.validarPorcentaje(tVariable.getText().trim())){
-                    Util.mostrarMensaje(this, "La comision debe estar entre 0% y 100%", Util.SEVERIDAD_ADVERTENCIA);
                     return false;
                 }
         
@@ -542,8 +548,7 @@ public class AltaCuentas extends javax.swing.JPanel {
                 if(tVariable.getText().equals("")){
                     Util.mostrarMensaje(this, "El campo del maximo descubierto no puede estar vacio", Util.SEVERIDAD_INFORMACION);
                     return false;
-                }else if(!Util.validarDouble(tVariable.getText().trim())){
-                    Util.mostrarMensaje(this, "El maximo descubierto debe ser numerico", Util.SEVERIDAD_ADVERTENCIA);
+                }else if(!Util.validarDouble(tVariable.getText().trim(), null)){
                     return false;
                 }
                 
@@ -553,8 +558,6 @@ public class AltaCuentas extends javax.swing.JPanel {
                             Util.SEVERIDAD_INFORMACION);
                     return false;
                 } else if(!Util.validarPorcentaje(tTipoInteresDescubierto.getText().trim())){
-                    Util.mostrarMensaje(this, "El tipo de interes por descubierto debe estar entre 0% y 100%",
-                            Util.SEVERIDAD_ADVERTENCIA);
                     return false;
                 }
                 
@@ -563,9 +566,7 @@ public class AltaCuentas extends javax.swing.JPanel {
                     Util.mostrarMensaje(this, "El campo de la comision fija por descubierto no puede estar vacio",
                             Util.SEVERIDAD_INFORMACION);
                     return false;
-                }else if(!Util.validarDouble(tComisionFijaDescubierto.getText().trim())){
-                    Util.mostrarMensaje(this, "La comision fija por descubierto debe ser numerica",
-                            Util.SEVERIDAD_ADVERTENCIA);
+                }else if(!Util.validarDouble(tComisionFijaDescubierto.getText().trim(), null)){
                     return false;
                 }
             }
@@ -579,10 +580,6 @@ public class AltaCuentas extends javax.swing.JPanel {
     public void limpiarCamposAlta(){
         Grupo1.clearSelection();
         Grupo2.clearSelection();
-//        rbCuentaAhorro.setSelected(false);
-//        rbCuentaCorriente.setSelected(false);
-//        rbCuentaCorrienteEmpresa.setSelected(false);
-//        rbCuentaCorrientePersonal.setSelected(false);
         tApellidos.setText("");
         tComisionFijaDescubierto.setText("");
         tFechaNacimiento.setText("");
